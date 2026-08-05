@@ -1,9 +1,9 @@
 # Slim Python base - this app has no need for the full image, and a
-# smaller image means faster HF Spaces builds and cold starts.
+# smaller image means faster Render builds and cold starts.
 FROM python:3.11-slim
 
 # Prevents .pyc files and forces stdout/stderr to be unbuffered so logs
-# show up in the HF Spaces build/runtime logs immediately, not batched.
+# show up in the Render build/runtime logs immediately, not batched.
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
@@ -21,10 +21,10 @@ COPY app/ ./app/
 COPY artifacts/ ./artifacts/
 COPY main.py .
 
-# HF Spaces (Docker SDK) expects the app to be reachable on 7860.
+# Render expects the app to be reachable on 7860.
 EXPOSE 7860
 
-# HF Spaces injects Space secrets as environment variables automatically,
+# Render injects Space secrets as environment variables automatically,
 # so nothing extra needed here for GROQ_API_KEY etc - app/config.py picks
 # them straight up from the environment.
 CMD ["python", "main.py"]
