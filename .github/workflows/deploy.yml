@@ -1,4 +1,4 @@
-name: Deploy to Render
+name: Deploy to Hugging Face Space
 
 on:
   push:
@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -23,12 +25,10 @@ jobs:
       - name: Byte-compile check
         run: python -m compileall app main.py
 
-      # Render auto-builds on push if the GitHub repo is connected in its
-      # dashboard, but that means every push deploys regardless of whether
-      # it's actually healthy. Using a Deploy Hook here instead means this
-      # step - and therefore the deploy - only fires once the checks above
-      # pass, and auto-deploy from push should be turned OFF in the Render
-      # dashboard so the two don't race each other.
-      - name: Trigger Render deploy
-        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
-
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: ${{ secrets.HF_SPACE }}
+        run: |
+          git remote add space https://user:$HF_TOKEN@huggingface.co/spaces/$HF_SPACE
+          git push --force space main
