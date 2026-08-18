@@ -11,6 +11,7 @@ license: mit
 ---
 # MintStreet — Agentic RAG
 
+
 MintStreet is an agentic Retrieval-Augmented Generation (RAG) system that answers natural-language questions over 10 years of Reserve Bank of India (RBI) Annual Reports. It combines semantic + keyword retrieval, structured SQL querying, and multi-turn conversation handling behind a single LangGraph-orchestrated agent, so a user can ask anything from "What was UPI transaction volume in 2022-23?" (structured data) to "What did the report say about the impact of GST stabilisation on the fiscal deficit?" (unstructured text/tables) in the same conversation.
  
 ## Why this project exists
