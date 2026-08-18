@@ -90,6 +90,7 @@ A custom evaluation set of **70 question–answer pairs** was hand-built to cove
 - 15 multi-turn follow-up questions (test conversation memory and query rewriting)
 - 10 edge cases (out-of-scope, ambiguous, or adversarial queries, to test the guardrail)
 This set is used two ways in the project: once to score the end-to-end production agent, and once to compare candidate retrieval/routing architecture variants against each other before picking the one that ships. (Evaluation *results* are intentionally omitted from this README — see the evaluation notebooks for methodology and metrics.)
+
 ---
 
 ## Project Structure
