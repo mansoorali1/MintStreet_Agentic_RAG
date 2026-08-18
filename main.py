@@ -6,6 +6,7 @@ those were Kaggle/Colab conveniences and have no place in a production
 container (share=True tries to tunnel through Gradio's own servers, which
 you don't want or need once this is actually deployed somewhere).
 """
+import os
 
 from app.ui import demo
 
